@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="{{ url_for('main.create_contact') }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Enter a contact</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+        <ul>
+            {% for error in form.name.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.email.label }}
+        {{ form.email }}
+        <ul>
+            {% for error in form.email.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.phone.label }}
+        {{ form.phone }}
+        <ul>
+            {% for error in form.phone.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.address.label }}
+        {{ form.address }}
+        <ul>
+            {% for error in form.address.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+
+        {{ form.birthday.label }}
+        {{ form.birthday(placeholder="YYYY-mm-dd") }}
+        <ul>
+            {% for error in form.birthday.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}

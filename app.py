@@ -1,6 +1,6 @@
-from app.extensions import app, db
-from app.main.routes import main
-from app.auth.routes import auth
+from intouch_app.extensions import app, db
+from intouch_app.main.routes import main
+from intouch_app.auth.routes import auth
 
 app.register_blueprint(main)
 app.register_blueprint(auth)
