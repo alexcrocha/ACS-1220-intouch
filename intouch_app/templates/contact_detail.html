@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ contact.title }}</h1>
+
+{% if current_user.is_authenticated %}
+
+{% endif %}
+
+<p>
+    <strong>Name</strong>: {{ contact.name }}
+</p>
+
+<p>
+    <strong>Email</strong>: {{ contact.email }}
+</p>
+
+<p>
+    <strong>Phone</strong>: {{ contact.phone }}
+</p>
+
+<p>
+    <strong>Address</strong>: {{ contact.address }}
+</p>
+
+{% if contact.birthday %}
+<p>
+    <strong>Birthday</strong>: {{ contact.birthday.strftime('%B %d, %Y') }}
+</p>
+{% endif %}
+
+<form method="POST" action="{{ url_for('main.contact_detail', contact_id=contact.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Edit this contact</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+
+        {{ form.email.label }}
+        {{ form.email }}
+
+        {{ form.phone.label }}
+        {{ form.phone }}
+
+        {{ form.address.label }}
+        {{ form.address }}
+
+        {{ form.birthday.label }}
+        {{ form.birthday(placeholder="YYYY-mm-dd") }}
+
+        {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}
