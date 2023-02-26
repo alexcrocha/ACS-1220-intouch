@@ -92,6 +92,20 @@ def edit_contact(contact_id):
 
     return render_template('edit_contact.html', contact=contact, form=form)
 
+@main.route('/contact/<contact_id>/delete', methods=['POST'])
+@login_required
+def delete_contact(contact_id):
+    contact = Contact.query.get(contact_id)
+    if (contact is None or contact.user_id != current_user.id):
+        return redirect(url_for('main.homepage'))
+
+    db.session.delete(contact)
+    db.session.commit()
+
+    flash('Contact was deleted successfully.')
+    return redirect(url_for('main.homepage'))
+
+
 
 @main.route('/contact/<contact_id>/create_comment', methods=['GET', 'POST'])
 @login_required
@@ -142,3 +156,18 @@ def edit_comment(contact_id, comment_id):
         return redirect(url_for('main.contact_detail', contact_id=contact.id))
 
     return render_template('edit_comment.html', contact=contact, comment=comment, form=form)
+
+
+@main.route('/contact/<contact_id>/comment/<comment_id>', methods=['POST'])
+@login_required
+def delete_comment(contact_id, comment_id):
+    contact = Contact.query.get(contact_id)
+    comment = Comment.query.get(comment_id)
+    if (contact is None or contact.user_id != current_user.id):
+        return redirect(url_for('main.homepage'))
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    flash('Comment was deleted successfully.')
+    return redirect(url_for('main.contact_detail', contact_id=contact.id))

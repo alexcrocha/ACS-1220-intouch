@@ -58,5 +58,9 @@
         {{ form.submit }}
     </fieldset>
 </form>
+<form method="POST" action="{{ url_for('main.delete_contact', contact_id=contact.id) }}">
+    {{ form.csrf_token }}
+    <p><input type="submit" name="btn" value="Delete"></p>
+</form>
 
 {% endblock %}
