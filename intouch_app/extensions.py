@@ -10,11 +10,6 @@ app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 
-###########################
-# Authentication
-###########################
-
-# Add authentication setup code here!
 
 login_manager = LoginManager()
 login_manager.login_view = "auth.login"

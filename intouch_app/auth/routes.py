@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required
 
 from intouch_app.models import User
 from intouch_app.auth.forms import SignUpForm, LoginForm
@@ -8,7 +8,7 @@ from intouch_app.extensions import app, db, bcrypt
 
 auth = Blueprint("auth", __name__)
 
-# Create your routes here.
+
 @auth.route("/signup", methods=["GET", "POST"])
 def signup():
     form = SignUpForm()
