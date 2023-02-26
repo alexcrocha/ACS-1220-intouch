@@ -1,8 +1,8 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_required, current_user
 from datetime import date, datetime
 from intouch_app.models import Contact, Comment, User
-from intouch_app.main.forms import ContactForm
+from intouch_app.main.forms import ContactForm, CommentForm
 
 from intouch_app.extensions import db
 
@@ -43,6 +43,8 @@ def create_contact():
 @login_required
 def contact_detail(contact_id):
     contact = Contact.query.get(contact_id)
+    comments = Comment.query.filter_by(contact_id=contact_id).all()
+
     if (contact is None or contact.user_id != current_user.id):
         return redirect(url_for('main.homepage'))
 
@@ -61,4 +63,29 @@ def contact_detail(contact_id):
         flash('Contact was updated successfully.')
         return redirect(url_for('main.contact_detail', contact_id=contact_id))
 
-    return render_template('contact_detail.html', contact=contact, form=form)
+    return render_template('contact_detail.html', contact=contact, comments=comments, form=form)
+
+
+@main.route('/contact/<contact_id>/create_comment', methods=['GET', 'POST'])
+@login_required
+def create_comment(contact_id):
+    contact = Contact.query.get(contact_id)
+    if (contact is None or contact.user_id != current_user.id):
+        return redirect(url_for('main.homepage'))
+
+    form = CommentForm()
+
+    # if form was submitted and contained no errors
+    if form.validate_on_submit():
+        new_comment = Comment(
+            comment = form.comment.data,
+            created_on = datetime.now(),
+            contact_id = contact.id
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+
+        flash('New comment was created successfully.')
+        return redirect(url_for('main.contact_detail', contact_id=contact.id))
+
+    return render_template('create_comment.html', contact=contact, form=form)

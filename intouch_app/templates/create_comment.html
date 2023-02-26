@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="{{ url_for('main.create_comment', contact_id=contact.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Enter a comment for </legend>
+
+        {{ form.comment.label }}
+        {{ form.comment }}
+        <ul>
+            {% for error in form.comment.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}

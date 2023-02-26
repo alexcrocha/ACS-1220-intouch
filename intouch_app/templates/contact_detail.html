@@ -2,11 +2,7 @@
 
 {% block content %}
 
-<h1>{{ contact.title }}</h1>
-
-{% if current_user.is_authenticated %}
-
-{% endif %}
+<h1>{{ contact.name }} Info</h1>
 
 <p>
     <strong>Name</strong>: {{ contact.name }}
@@ -28,6 +24,20 @@
 <p>
     <strong>Birthday</strong>: {{ contact.birthday.strftime('%B %d, %Y') }}
 </p>
+{% endif %}
+
+<a href="/contact/{{ contact.id }}/create_comment">Add a comment</a>
+
+{% if comments %}
+<h2>Comments</h2>
+<ul>
+    {% for comment in comments %}
+    <li>
+        <p>{{ comment.comment }}</p>
+        <p>{{ comment.created_on.strftime('%B %d, %Y') }}</p>
+    </li>
+    {% endfor %}
+</ul>
 {% endif %}
 
 <form method="POST" action="{{ url_for('main.contact_detail', contact_id=contact.id) }}">
