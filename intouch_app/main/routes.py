@@ -109,6 +109,7 @@ def create_comment(contact_id):
             created_on = datetime.now(),
             contact_id = contact.id
         )
+
         db.session.add(new_comment)
         db.session.commit()
 
@@ -116,3 +117,28 @@ def create_comment(contact_id):
         return redirect(url_for('main.contact_detail', contact_id=contact.id))
 
     return render_template('create_comment.html', contact=contact, form=form)
+
+
+@main.route('/contact/<contact_id>/comment/<comment_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_comment(contact_id, comment_id):
+    contact = Contact.query.get(contact_id)
+    comment = Comment.query.get(comment_id)
+    if (contact is None or contact.user_id != current_user.id):
+        return redirect(url_for('main.homepage'))
+
+    form = CommentForm(obj=comment)
+
+    # if form was submitted and contained no errors
+    if form.validate_on_submit():
+        comment.comment = form.comment.data,
+        comment.comment = comment.comment[0] # this is a hack to get the string out of the tuple. I don't know why it's a tuple.
+        comment.created_on = datetime.now()
+
+        db.session.add(comment)
+        db.session.commit()
+
+        flash('Comment was updated successfully.')
+        return redirect(url_for('main.contact_detail', contact_id=contact.id))
+
+    return render_template('edit_comment.html', contact=contact, comment=comment, form=form)

@@ -16,6 +16,6 @@ class ContactForm(FlaskForm):
 
 class CommentForm(FlaskForm):
     """Form to create a contact."""
-    comment = TextAreaField('Name',
-        validators=[DataRequired(), Length(min=3, max=500)])
+    comment = TextAreaField('Comment',
+        validators=[DataRequired(), Length(min=3, max=800)])
     submit = SubmitField('Submit')

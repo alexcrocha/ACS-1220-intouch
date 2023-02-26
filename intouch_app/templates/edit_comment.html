@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<form method="POST" action="{{ url_for('main.create_comment', contact_id=contact.id) }}">
+<form method="POST" action="{{ url_for('main.edit_comment', contact_id=contact.id, comment_id=comment.id) }}">
     {{ form.csrf_token }}
     <fieldset>
-        <legend>Enter a comment for {{ contact.name }} </legend>
+        <legend>Edit comment for {{ contact.name }}</legend>
 
         {{ form.comment(class="form-control") }}
         <ul>

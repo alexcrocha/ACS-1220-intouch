@@ -41,6 +41,7 @@
     <li>
         <p>{{ comment.comment }}</p>
         <p>{{ comment.created_on.strftime('%B %d, %Y') }}</p>
+        <a href="/contact/{{ contact.id }}/comment/{{ comment.id }}/edit">Edit comment</a>
     </li>
     {% endfor %}
 </ul>
