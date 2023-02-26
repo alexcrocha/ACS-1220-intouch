@@ -4,6 +4,8 @@
 
 <h1>{{ contact.name }} Info</h1>
 
+<a href="/contact/{{ contact.id }}/edit">Edit contact</a>
+
 <p>
     <strong>Name</strong>: {{ contact.name }}
 </p>
@@ -43,32 +45,5 @@
     {% endfor %}
 </ul>
 {% endif %}
-
-<form method="POST" action="{{ url_for('main.contact_detail', contact_id=contact.id) }}">
-    {{ form.csrf_token }}
-    <fieldset>
-        <legend>Edit this contact</legend>
-
-        {{ form.name.label }}
-        {{ form.name }}
-
-        {{ form.email.label }}
-        {{ form.email }}
-
-        {{ form.phone.label }}
-        {{ form.phone }}
-
-        {{ form.address.label }}
-        {{ form.address }}
-
-        {{ form.birthday.label }}
-        {{ form.birthday(placeholder="YYYY-mm-dd") }}
-
-        {{ form.relationship.label }}
-        {{ form.relationship }}
-
-        {{ form.submit }}
-    </fieldset>
-</form>
 
 {% endblock %}

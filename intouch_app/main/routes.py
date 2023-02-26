@@ -67,6 +67,31 @@ def contact_detail(contact_id):
 
     return render_template('contact_detail.html', contact=contact, comments=comments, form=form)
 
+@main.route('/contact/<contact_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_contact(contact_id):
+    contact = Contact.query.get(contact_id)
+    if (contact is None or contact.user_id != current_user.id):
+        return redirect(url_for('main.homepage'))
+
+    form = ContactForm(obj=contact)
+
+    # if form was submitted and contained no errors
+    if form.validate_on_submit():
+        contact.name = form.name.data
+        contact.email = form.email.data
+        contact.phone = form.phone.data
+        contact.address = form.address.data
+        contact.birthday = form.birthday.data
+        contact.relationship = form.relationship.data
+
+        db.session.commit()
+
+        flash('Contact was updated successfully.')
+        return redirect(url_for('main.contact_detail', contact_id=contact_id))
+
+    return render_template('edit_contact.html', contact=contact, form=form)
+
 
 @main.route('/contact/<contact_id>/create_comment', methods=['GET', 'POST'])
 @login_required

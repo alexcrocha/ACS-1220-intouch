@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="{{ url_for('main.edit_contact', contact_id=contact.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Edit contact</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+        <ul>
+            {% for error in form.name.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.email.label }}
+        {{ form.email }}
+        <ul>
+            {% for error in form.email.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.phone.label }}
+        {{ form.phone }}
+        <ul>
+            {% for error in form.phone.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.address.label }}
+        {{ form.address }}
+        <ul>
+            {% for error in form.address.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.birthday.label }}
+        {{ form.birthday(placeholder="YYYY-mm-dd") }}
+        <ul>
+            {% for error in form.birthday.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.relationship.label }}
+        {{ form.relationship }}
+        <ul>
+            {% for error in form.relationship.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}
