@@ -30,6 +30,7 @@ def create_contact():
             phone = form.phone.data,
             address = form.address.data,
             birthday = form.birthday.data,
+            relationship = form.relationship.data,
             user_id = current_user.id
         )
         db.session.add(new_contact)
@@ -57,6 +58,7 @@ def contact_detail(contact_id):
         contact.phone = form.phone.data
         contact.address = form.address.data
         contact.birthday = form.birthday.data
+        contact.relationship = form.relationship.data
 
         db.session.commit()
 

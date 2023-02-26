@@ -12,6 +12,7 @@ class Contact(db.Model):
     phone = db.Column(db.String(9))
     address = db.Column(db.String(200))
     birthday = db.Column(db.Date)
+    relationship = db.Column(db.String(80))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 

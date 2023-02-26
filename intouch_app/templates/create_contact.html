@@ -39,7 +39,6 @@
             {% endfor %}
         </ul>
 
-
         {{ form.birthday.label }}
         {{ form.birthday(placeholder="YYYY-mm-dd") }}
         <ul>
@@ -47,6 +46,15 @@
             <li class="error">{{ error }}</li>
             {% endfor %}
         </ul>
+
+        {{ form.relationship.label }}
+        {{ form.relationship }}
+        <ul>
+            {% for error in form.relationship.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
         {{ form.submit }}
     </fieldset>
 </form>

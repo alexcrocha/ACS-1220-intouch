@@ -26,6 +26,10 @@
 </p>
 {% endif %}
 
+<p>
+    <strong>Relationship</strong>: {{ contact.relationship }}
+</p>
+
 <a href="/contact/{{ contact.id }}/create_comment">Add a comment</a>
 
 {% if comments %}
@@ -59,6 +63,9 @@
 
         {{ form.birthday.label }}
         {{ form.birthday(placeholder="YYYY-mm-dd") }}
+
+        {{ form.relationship.label }}
+        {{ form.relationship }}
 
         {{ form.submit }}
     </fieldset>

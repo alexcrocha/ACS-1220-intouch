@@ -11,6 +11,7 @@ class ContactForm(FlaskForm):
     phone = StringField('Phone')
     address = StringField('Address')
     birthday = DateField('Birthday')
+    relationship = StringField('Relationship')
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
