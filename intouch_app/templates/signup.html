@@ -1,32 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
+<section class="auth">
+    <h1>Sign Up</h1>
 
-<h1>Sign Up</h1>
+    <form action="/signup" method="POST">
+        {{ form.csrf_token }}
+        <fieldset>
+            <legend>Enter your credentials</legend>
+            <section class="form-section">
+                {{ form.username.label }}
+                {{ form.username }}
+            </section>
+            <ul>
+                {% for error in form.username.errors %}
+                <li class="error">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <section class="form-section">
+                {{ form.password.label }}
+                {{ form.password }}
+            </section>
+            <ul>
+                {% for error in form.password.errors %}
+                <li class="error">{{ error }}</li>
+                {% endfor %}
+            </ul>
 
-<form action="/signup" method="POST">
-    {{ form.csrf_token }}
-    <fieldset>
-        <legend>Enter your credentials</legend>
-
-        {{ form.username.label }}
-        {{ form.username }}
-        <ul>
-            {% for error in form.username.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-
-        {{ form.password.label }}
-        {{ form.password }}
-        <ul>
-            {% for error in form.password.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-
-        {{ form.submit }}
-
-    </fieldset>
-</form>
-
+            {{ form.submit }}
+        </fieldset>
+        </form>
+</section>
 {% endblock %}

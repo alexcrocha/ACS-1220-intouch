@@ -5,7 +5,7 @@
 <form method="POST" action="{{ url_for('main.create_comment', contact_id=contact.id) }}">
     {{ form.csrf_token }}
     <fieldset>
-        <legend>Enter a comment for {{ contact.name }} </legend>
+        <legend>Enter a note for {{ contact.name }} </legend>
 
         {{ form.comment(class="form-control") }}
         <ul>

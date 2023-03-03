@@ -8,7 +8,7 @@ from intouch_app.models import User
 
 """
 Run these tests with the command:
-python -m unittest app.auth.tests
+python -m unittest intouch_app.auth.tests
 """
 
 #################################################

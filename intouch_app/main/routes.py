@@ -22,7 +22,6 @@ def homepage():
 def create_contact():
     form = ContactForm()
 
-    # if form was submitted and contained no errors
     if form.validate_on_submit():
         new_contact = Contact(
             name=form.name.data,
