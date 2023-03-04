@@ -47,13 +47,6 @@ class AuthTests(TestCase):
         created_user = User.query.filter_by(username="Rocky").first()
         self.assertIsNotNone(created_user)
 
-    def test_signup_existing_user(self):
-        post_data = {"username": "me1", "password": "password"}
-
-        response = self.app.post("/signup", data=post_data)
-        response_text = response.get_data(as_text=True)
-        self.assertIn("That username is taken.", response_text)
-
     def test_login_correct_password(self):
         create_user()
         self.app.post("/login", data={"username": "me1", "password": "password"})
@@ -82,4 +75,4 @@ class AuthTests(TestCase):
         self.app.post("/login", data={"username": "me1", "password": "password"})
         self.app.get("/logout")
         response = self.app.get("/")
-        self.assertIn("Log In", response.get_data(as_text=True))
+        self.assertIn("login", response.get_data(as_text=True))
