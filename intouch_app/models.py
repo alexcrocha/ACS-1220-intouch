@@ -12,7 +12,7 @@ class Contact(db.Model):
     phone = db.Column(db.String(20))
     address = db.Column(db.String(200))
     birthday = db.Column(db.Date)
-    image_url = db.Column(db.String(200))
+    image_url = db.Column(db.String(400))
     relationship = db.Column(db.String(80))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
