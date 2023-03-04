@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="delete">
+  <form method="POST" action="{{ url_for('main.delete_contact', contact_id=contact.id) }}">
+    {{ form.csrf_token }}
+    <fieldset class="fieldset-margin">
+      <legend>Delete Contact</legend>
+      <p>Are you sure you want to delete {{ contact.name }}? This can't be undone!</p>
+      {{ form.submit }}
+    </fieldset>
+  </form>
+  <footer>
+    <a href="{{ url_for('main.edit_contact', contact_id=contact.id) }}" class="link-btn-black">Back to Edit</a>
+  </footer>
+</section>
+
+{% endblock %}

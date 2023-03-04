@@ -1,50 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="contact-detail">
+    <section class="contact-detail-info">
+        <header class="contact-detail-info-header">
+            <h1>{{ contact.name }}</h1>
+            <a href="/contact/{{ contact.id }}/edit" class="link-btn">Edit</a>
+        </header>
 
-<h1>{{ contact.name }} Info</h1>
+        <section class="contact-detail-info-img">
+            {% if contact.image_url %}
+            <img src="{{ contact.image_url }}" alt="Contact image" />
+            {% else %}
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcatking.in%2Fwp-content%2Fuploads%2F2017%2F02%2Fdefault-profile-1.png&f=1&nofb=1&ipt=e5059ecca894373e35ccdecfaeef2114b9074783a3569c2a93bc960646ff76ce&ipo=images"
+                alt="Contact image" />
+            {% endif %}
+        </section>
+        {%if contact.email %}
+        <p>📧 {{ contact.email }}</p>
+        {% endif %}
+        {% if contact.phone %}
+        <p>📞 {{ contact.phone }}</p>
+        {% endif %}
+        {% if contact.address %}
+        <p>📫 {{ contact.address }}</p>
+        {% endif %}
+        {% if contact.birthday %}
+        <p>
+            🎂 {{ contact.birthday.strftime('%B %d') }}
+            </p>
+            {% endif %}
+        {% if contact.relationship %}
+        <p>🏷️ {{ contact.relationship }}</p>
+        {% endif %}
+        </section>
 
-<a href="/contact/{{ contact.id }}/edit">Edit contact</a>
+    <section class="contact-detail-notes">
+        <header class="contact-detail-notes-header">
+            <h1>Notes</h1>
+            <a href="/contact/{{ contact.id }}/create_note" class="link-btn">Add Note</a>
+        </header>
 
-<p>
-    <strong>Name</strong>: {{ contact.name }}
-</p>
-
-<p>
-    <strong>Email</strong>: {{ contact.email }}
-</p>
-
-<p>
-    <strong>Phone</strong>: {{ contact.phone }}
-</p>
-
-<p>
-    <strong>Address</strong>: {{ contact.address }}
-</p>
-
-{% if contact.birthday %}
-<p>
-    <strong>Birthday</strong>: {{ contact.birthday.strftime('%B %d, %Y') }}
-</p>
-{% endif %}
-
-<p>
-    <strong>Relationship</strong>: {{ contact.relationship }}
-</p>
-
-<a href="/contact/{{ contact.id }}/create_comment">Add a comment</a>
-
-{% if comments %}
-<h2>Comments</h2>
-<ul>
-    {% for comment in comments %}
-    <li>
-        <p>{{ comment.comment }}</p>
-        <p>{{ comment.created_on.strftime('%B %d, %Y') }}</p>
-        <a href="/contact/{{ contact.id }}/comment/{{ comment.id }}/edit">Edit comment</a>
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
+        {% if notes %}
+        <ul class="note-list">
+            {% for note in notes %}
+            <li class="note">
+                <section class="note-section">
+                    <p>{{ note.created_on.strftime('%B %d, %Y') }}</p>
+                    <a href="/contact/{{ contact.id }}/note/{{ note.id }}/edit" class="link-btn">Edit</a>
+                </section>
+                <p class="note-text">{{ note.note }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </section>
+    <section class="contact-detail-timeline"></section>
+    </section>
 
 {% endblock %}

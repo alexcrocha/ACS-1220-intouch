@@ -17,11 +17,11 @@
         </section>
         <nav class="navbar-links">
             {% if current_user.is_authenticated %}
-            <span>Hello {{ current_user.username }}</span>
+            <span class="hello">Hello {{ current_user.username }}</span>
             {% endif %}
             {% if current_user.is_authenticated %}
             <a href="/">Home</a>
-            <a href="/create_contact">Create Contact</a>
+            <a href="/create_contact">Add Contact</a>
             <a href="/logout">Log Out</a>
             {% else %}
             <a href="/signup">Sign Up</a>

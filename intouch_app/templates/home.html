@@ -2,14 +2,27 @@
 
 {% block content %}
 
-<h2>Contacts</h2>
-
-
-<ul>
-    {% for contact in contacts %}
-    <li><a href="/contact/{{ contact.id }}">{{ contact.name }}</a></li>
-    {% endfor %}
-</ul>
-
+<section class="contact">
+    <header>
+        <p></p>
+        <h1>Contacts</h1>
+        <a href="/create_contact" class="link-btn-black">Add Contact</a>
+    </header>
+    <ul class="contact-list">
+        {% for contact in contacts %}
+        <a href="/contact/{{ contact.id }}">
+            <li class="contact-card">
+                {% if contact.image_url %}
+                <img src="{{ contact.image_url }}" alt="Contact image" />
+                {% else %}
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcatking.in%2Fwp-content%2Fuploads%2F2017%2F02%2Fdefault-profile-1.png&f=1&nofb=1&ipt=e5059ecca894373e35ccdecfaeef2114b9074783a3569c2a93bc960646ff76ce&ipo=images"
+                    alt="Contact image" />
+                {% endif %}
+                <h3>{{ contact.name }}</h3>
+            </li>
+        </a>
+        {% endfor %}
+        </ul>
+</section>
 
 {% endblock %}

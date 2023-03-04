@@ -9,9 +9,10 @@ class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(80))
-    phone = db.Column(db.String(9))
+    phone = db.Column(db.String(20))
     address = db.Column(db.String(200))
     birthday = db.Column(db.Date)
+    image_url = db.Column(db.String(200))
     relationship = db.Column(db.String(80))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
@@ -22,11 +23,11 @@ class Contact(db.Model):
         return f"<Contact: {self.name}>"
 
 
-class Comment(db.Model):
+class Note(db.Model):
     """Contact model."""
 
     id = db.Column(db.Integer, primary_key=True)
-    comment = db.Column(db.String(800), nullable=False)
+    note = db.Column(db.String(800), nullable=False)
     created_on = db.Column(db.Date)
     contact_id = db.Column(db.Integer, db.ForeignKey("contact.id"), nullable=False)
 

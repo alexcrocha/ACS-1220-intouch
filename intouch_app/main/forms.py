@@ -12,14 +12,20 @@ class ContactForm(FlaskForm):
     phone = StringField("Phone")
     address = StringField("Address")
     birthday = DateField("Birthday")
+    image_url = StringField("Image URL")
     relationship = StringField("Relationship")
-    submit = SubmitField("Submit")
+    submit = SubmitField("Save")
 
 
-class CommentForm(FlaskForm):
-    """Form to create a contact."""
+class NoteForm(FlaskForm):
+    """Form to create a note."""
 
-    comment = TextAreaField(
-        "Comment", validators=[DataRequired(), Length(min=3, max=800)]
+    note = TextAreaField(
+        "Note", validators=[DataRequired(), Length(min=3, max=800)]
     )
-    submit = SubmitField("Submit")
+    submit = SubmitField("Save")
+
+class DeleteForm(FlaskForm):
+    """Form to delete a contact or note."""
+
+    submit = SubmitField("Delete")

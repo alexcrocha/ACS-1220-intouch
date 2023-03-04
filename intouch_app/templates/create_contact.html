@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<section>
 <form method="POST" action="{{ url_for('main.create_contact') }}">
     {{ form.csrf_token }}
-    <fieldset>
-        <legend>Enter a contact</legend>
+    <fieldset class="fieldset-margin">
+        <legend>Add a new contact</legend>
+
         <section class="form-section">
 
-        {{ form.name.label }}
-        {{ form.name }}
+            {{ form.name.label }}
+            {{ form.name }}
         </section>
         <ul>
             {% for error in form.name.errors %}
@@ -17,17 +18,17 @@
             {% endfor %}
         </ul>
         <section class="form-section">
-        {{ form.email.label }}
-        {{ form.email }}
+            {{ form.email.label }}
+            {{ form.email }}
         </section>
         <ul>
             {% for error in form.email.errors %}
             <li class="error">{{ error }}</li>
             {% endfor %}
         </ul>
-<section class="form-section">
-        {{ form.phone.label }}
-        {{ form.phone }}
+        <section class="form-section">
+            {{ form.phone.label }}
+            {{ form.phone }}
         </section>
         <ul>
             {% for error in form.phone.errors %}
@@ -35,8 +36,8 @@
             {% endfor %}
         </ul>
         <section class="form-section">
-        {{ form.address.label }}
-        {{ form.address }}
+            {{ form.address.label }}
+            {{ form.address }}
         </section>
         <ul>
             {% for error in form.address.errors %}
@@ -44,8 +45,8 @@
             {% endfor %}
         </ul>
         <section class="form-section">
-        {{ form.birthday.label }}
-        {{ form.birthday(placeholder="YYYY-mm-dd") }}
+            {{ form.birthday.label }}
+            {{ form.birthday(placeholder="YYYY-mm-dd") }}
         </section>
         <ul>
             {% for error in form.birthday.errors %}
@@ -53,17 +54,28 @@
             {% endfor %}
         </ul>
         <section class="form-section">
-        {{ form.relationship.label }}
-        {{ form.relationship }}
+            {{ form.relationship.label }}
+            {{ form.relationship }}
         </section>
         <ul>
             {% for error in form.relationship.errors %}
             <li class="error">{{ error }}</li>
             {% endfor %}
         </ul>
-
+        <section class="form-section">
+            {{ form.image_url.label }}
+            {{ form.image_url }}
+        </section>
+        <ul>
+            {% for error in form.image_url.errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
         {{ form.submit }}
     </fieldset>
 </form>
-
+<footer>
+    <a href="{{ url_for('main.homepage') }}" class="link-btn-black">Go Back</a>
+</footer>
+</section>
 {% endblock %}

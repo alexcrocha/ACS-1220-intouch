@@ -1,74 +1,87 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section>
 
-<form method="POST" action="{{ url_for('main.edit_contact', contact_id=contact.id) }}">
-    {{ form.csrf_token }}
-    <fieldset>
-        <legend>Edit contact</legend>
-
-        <section class="form-section">
-
-            {{ form.name.label }}
-            {{ form.name }}
+    <form method="POST" action="{{ url_for('main.edit_contact', contact_id=contact.id) }}">
+        {{ form.csrf_token }}
+        <fieldset class="fieldset-margin">
+            <legend>Edit contact</legend>
+            <section class="form-section">
+                {{ form.name.label }}
+                {{ form.name }}
+                </section>
+                <ul>
+                    {% for error in form.name.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="form-section">
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </section>
+                <ul>
+                    {% for error in form.email.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="form-section">
+                    {{ form.phone.label }}
+                    {{ form.phone }}
+                </section>
+                <ul>
+                    {% for error in form.phone.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="form-section">
+                    {{ form.address.label }}
+                    {{ form.address }}
+                </section>
+                <ul>
+                    {% for error in form.address.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="form-section">
+                    {{ form.birthday.label }}
+                    {{ form.birthday(placeholder="YYYY-mm-dd") }}
+                </section>
+                <ul>
+                    {% for error in form.birthday.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="form-section">
+                    {{ form.relationship.label }}
+                    {{ form.relationship }}
+                </section>
+                <ul>
+                    {% for error in form.relationship.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            <section class="form-section">
+                {{ form.image_url.label }}
+                {{ form.image_url }}
+            </section>
+            <ul>
+                {% for error in form.image_url.errors %}
+                <li class="error">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {{ form.submit }}
+            </fieldset>
+            </form>
+    <footer>
+        <a href="{{ url_for('main.contact_detail', contact_id=contact.id) }}" class="link-btn-black">Back to {{ contact.name
+            }}</a>
+        <a href="{{ url_for('main.delete_contact', contact_id=contact.id) }}" class="link-btn-black">Delete</a>
+        <!-- <form method="POST" action="{{ url_for('main.delete_contact', contact_id=contact.id) }}">
+                    {{ form.csrf_token }}
+                    <p><input type="submit" name="btn" value="Delete"></p>
+        </form> -->
+        </footer>
         </section>
-        <ul>
-            {% for error in form.name.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-        <section class="form-section">
-            {{ form.email.label }}
-            {{ form.email }}
-        </section>
-        <ul>
-            {% for error in form.email.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-        <section class="form-section">
-            {{ form.phone.label }}
-            {{ form.phone }}
-        </section>
-        <ul>
-            {% for error in form.phone.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-        <section class="form-section">
-            {{ form.address.label }}
-            {{ form.address }}
-        </section>
-        <ul>
-            {% for error in form.address.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-        <section class="form-section">
-            {{ form.birthday.label }}
-            {{ form.birthday(placeholder="YYYY-mm-dd") }}
-        </section>
-        <ul>
-            {% for error in form.birthday.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-        <section class="form-section">
-            {{ form.relationship.label }}
-            {{ form.relationship }}
-        </section>
-        <ul>
-            {% for error in form.relationship.errors %}
-            <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-
-        {{ form.submit }}
-    </fieldset>
-</form>
-<form method="POST" action="{{ url_for('main.delete_contact', contact_id=contact.id) }}">
-    {{ form.csrf_token }}
-    <p><input type="submit" name="btn" value="Delete"></p>
-</form>
 
 {% endblock %}

@@ -1,11 +1,12 @@
 /* Add styles here. */
 
-html, body {
-    background-color: #eee;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 200;
-    height: 100vh;
-    margin: 0;
+html,
+body {
+  background-color: #eee;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  height: 100vh;
+  margin: 0;
 }
 
 /* ========================= */
@@ -62,19 +63,16 @@ ul li {
   margin: 10px;
 }
 
-ul li a {
+ul li a, .contact-list a {
   text-decoration: none;
   color: #282c34;
   cursor: pointer;
 }
 
-ul li a:hover {
+ul li a:hover,
+.contact-list a:hover {
   color: #282c34cc;
 }
-
-/* ========================= */
-/*       AUTH STYLES        */
-/* ========================= */
 
 .auth {
   display: flex;
@@ -85,6 +83,39 @@ ul li a:hover {
   height: 100%;
 }
 
+.hello {
+  border-right: 1px solid #282c34cc;
+  padding-right: 10px;
+}
+
+.contact header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin:16px
+}
+
+.contact header p {
+  width: 111px;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 20px 20px;
+  border-top: 1px solid #ccc;
+  color: #282c34;
+  height: 60px;
+}
+
+/* ========================= */
+/*       FORM STYLES         */
+/* ========================= */
+
 form {
   display: flex;
   flex-direction: column;
@@ -94,14 +125,25 @@ form {
   height: 100%;
 }
 
-
-
 fieldset {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffffcc;
+  padding: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.fieldset-margin {
+  margin-top: 50px;
+}
+
+fieldset legend {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .form-section {
@@ -114,7 +156,7 @@ fieldset {
 }
 
 form input {
-  margin: 10px;
+  margin: 0 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -128,6 +170,7 @@ form input[type="submit"] {
   border: none;
   cursor: pointer;
   float: right;
+  font-size: 1em;
 }
 
 form input[type="submit"]:hover {
@@ -139,6 +182,207 @@ textarea {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 300px;
+  width: 500px;
   height: 100px;
+  font-size: 1.25em;
+}
+
+legend {
+  float: left;
+}
+
+/* ========================= */
+/*   CONTACT DETAIL STYLES   */
+/* ========================= */
+
+.contact-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-detail-info {
+  padding-left: 2em;
+  width: 15%;
+}
+.contact-detail-info p {
+  font-size: 1.2rem;
+}
+
+.contact-detail-info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-detail-info-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ========================= */
+/*    CONTACT LIST STYLES    */
+/* ========================= */
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%;
+  height: 100%; */
+  background-color: #ffffffcc;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.contact-card h3 {
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.link-btn-black {
+  margin: 10px;
+  padding: 10px;
+  background-color: #282c34;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 400;
+  /* font-size: 13.33px; */
+}
+
+.link-btn {
+  /* margin: 10px; */
+  padding: 10px 20px;
+  color: #282c34;
+  /* border: 1px solid #282c34; */
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.link-btn:hover {
+  background-color: #282c34;
+  color: #fff;
+}
+
+.link-btn-black:hover {
+  background-color: #282c34cc;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+
+/* ========================= */
+/*      NOTE LIST STYLES     */
+/* ========================= */
+
+.contact-detail-notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.contact-detail-notes-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%;
+  height: 100%; */
+}
+
+
+.note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffffcc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.note-text {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.note-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-detail-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+}
+
+
+/* ========================= */
+/*      DELETE STYLES      */
+/* ========================= */
+
+.delete input#submit {
+  background-color: rgb(222, 0, 0);
 }

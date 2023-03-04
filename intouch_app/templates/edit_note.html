@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+
+    <form method="POST" action="{{ url_for('main.edit_note', contact_id=contact.id, note_id=note.id) }}">
+        {{ form.csrf_token }}
+        <fieldset class="fieldset-margin">
+            <legend>Edit note for {{ contact.name }}</legend>
+
+            {{ form.note(class="form-control") }}
+            <ul>
+                {% for error in form.note.errors %}
+                <li class="error">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.submit }}
+        </fieldset>
+    </form>
+    <footer>
+        <a href="{{ url_for('main.contact_detail', contact_id=contact.id) }}" class="link-btn-black">Back to {{
+            contact.name
+            }}</a>
+        <a href="{{ url_for('main.delete_note', contact_id=contact.id, note_id=note.id) }}"
+            class="link-btn-black">Delete Note</a>
+    </footer>
+</section>
+
+
+{% endblock %}
