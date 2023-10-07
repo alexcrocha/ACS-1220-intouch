@@ -2,6 +2,12 @@
 
 This repository contains a Flask application named `Intouch` that uses PostgreSQL as its database. This application is Dockerized for easy development and deployment.
 
+## Demo
+
+[Intouch Demo](https://intouch.dev.cachecow.tech/) (Username: `demo`, Password: `demo`)
+
+[Service status](https://stats.uptimerobot.com/QlO3DFBogP/795429500)
+
 ## Requirements
 
 - Docker
